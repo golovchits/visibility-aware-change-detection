@@ -1,0 +1,22 @@
+# Local-only planning notes
+START_HERE.md
+docs/BUILD_PLAN.md
+docs/DECISIONS.md
+
+# GPU outputs, rebuilt from the Colab notebook
+cache/
+
+# OS and Python clutter
+.DS_Store
+__pycache__/
+.ipynb_checkpoints/
+
+# Local Claude Code settings and transcripts
+.claude/
+.cc-history/
+
+# The brief from Humanoid, kept local
+docs/CHALLENGE.md
+
+# Working notes for Claude Code, kept local
+CLAUDE.md

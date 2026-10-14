@@ -1,0 +1,26 @@
+# What really changed between the videos. Written at the table on 14 Oct 2026.
+# Never edit this after the first A vs B run.
+
+videos:
+  A: before.MOV    # IMG_8969, standing, oblique, ends on the bottle
+  B: after.MOV     # IMG_8970, low and close, bottle never in frame
+  C: control.MOV   # IMG_8971 from 2.5 s on, high, everything in frame
+
+scale:
+  object: laptop
+  model: MacBook Air 13-inch (M2, 2022)
+  real_width_m: 0.3041   # Apple tech specs, support.apple.com/en-us/111867
+  real_depth_m: 0.215    # second check on the scale
+
+pairs:
+  A_vs_B:
+    notebook: removed       # far side of the laptop in A, in the bag in B
+    pencil case: moved      # left of the laptop in A, right of it in B
+    flashcards: added       # stack of index cards, left of the laptop in B
+    water bottle: not checked   # in view in A, never in view in B
+    laptop: unchanged
+  B_vs_C:
+    laptop: unchanged
+    pencil case: unchanged
+    flashcards: unchanged
+    water bottle: not checked   # in view in C, never in view in B
