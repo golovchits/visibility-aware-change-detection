@@ -1,0 +1,6 @@
+videos:
+  A: before.MOV
+  B: after.MOV
+  C: control.MOV
+
+frames_per_video: 15

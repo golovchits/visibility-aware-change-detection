@@ -7,7 +7,7 @@ How the parts fit together. Every part exists because the challenge asks for it.
  video 1 + video 2 (phone, .MOV)
         |
         v
- frames.py         pick ~15 sharp frames per video          [Mac]
+ frames.py         pick ~15 sharp frames per video    [Mac + Colab]
         |
  ------ Colab GPU -----------------------------------------
  reconstruct.py    VGGT, one joint run on both videos'
@@ -86,10 +86,10 @@ visibility-aware-change-detection/
 
 ## 05 Data flow
 1. `frames.py` reads each video, scores every frame's sharpness, and keeps about 15 sharp frames spread across the whole video.
-2. `reconstruct.py` runs VGGT once on both videos' frames together. Each frame gets a camera pose, intrinsics, a depth map and a depth confidence map. Low-confidence depth is dropped.
+2. `reconstruct.py` runs VGGT once on both videos' frames together. Each frame gets a camera pose, intrinsics, a depth map and a depth confidence map. All of it is saved. Low-confidence depth is dropped later, on the Mac, so the cut-off can be tuned without rerunning Colab.
 3. `detect.py` runs Grounding DINO with a fixed prompt list, then SAM on each box, on the exact images VGGT saw, so pixels line up.
 4. `gpu.py` saves everything for the pair in `cache/<pair>.npz`.
-5. `objects.py` turns each mask into 3D points using the depth and the camera, then merges detections of the same object across frames of one video. Scale comes from the laptop's known width (30.41 cm). Its depth (21.5 cm) is the independent check.
+5. `objects.py` drops depth below the confidence cut-off, turns each mask into 3D points using the depth and the camera, then merges detections of the same object across frames of one video. Scale comes from the laptop's known width (30.41 cm). Its depth (21.5 cm) is the independent check.
 6. `visibility.py` tests every object against the other video's cameras (section 07).
 7. `classify.py` gives each object one of the five states, then pairs a removed and an added object of the same label into "moved".
 8. `describe.py`, `viewer.py` and `evaluate.py` write the outputs.
@@ -97,7 +97,7 @@ visibility-aware-change-detection/
 ## 06 Data formats
 | File | Holds |
 |---|---|
-| `cache/<pair>.npz` | per frame: image, video tag (1 or 2), extrinsic (camera from world), intrinsic, depth, depth confidence, masks with labels and scores |
+| `cache/<pair>.npz` | per frame: image (RGB, as VGGT saw it), video tag (1 or 2), frame number in the original video, extrinsic (camera from world), intrinsic, depth, depth confidence, masks with labels and scores |
 | `results/<pair>/results.json` | per object: id, label, video, state, centroid in metres (both videos where seen), coverage, present fraction, views that checked it |
 | `results/<pair>/changes.md` | the sentences |
 | `results/<pair>/viewer.html` | the 3D view |
@@ -140,7 +140,7 @@ Why masks and not depth for this step. A notebook lies about 1 cm above the tabl
 | Video 2 | covered in video 1, mostly present there | Same object as its video 1 match. Reported once, under the video 1 object |
 | A removed + an added object | same label | Moved, with the distance in cm |
 
-Thresholds: depth tolerance, `c_min`, the "mostly" cut-off, and the baseline radius `r_naive`. All set on B vs C only, then frozen.
+Thresholds: depth confidence cut-off, depth tolerance, `c_min`, the "mostly" cut-off, and the baseline radius `r_naive`. All set on B vs C only, then frozen.
 
 **Naive baseline.** The same pipeline without section 07 and without the "not checked" state. A video 1 object with no same-label object within `r_naive` in video 2 is removed, and the reverse is added. A removed and an added object of the same label become "moved", the same rule as ours. `r_naive` is tuned on B vs C the same way as our thresholds, then frozen. It isolates what the visibility test adds.
 
