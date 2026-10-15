@@ -38,7 +38,7 @@ The system wrote these sentences for A vs B ([`results/AB/changes.md`](results/A
 >
 > The laptop is unchanged. Video B saw 100% of it from 15 views, and 100% of what it saw was the same object.
 
-The "box" is the flashcards. That is the name the detector gave them.
+The "box" is the flashcards. That is the name the detector gave them. The pencil case appears twice. That is the one miss, explained under Results.
 
 ## Results
 
@@ -73,6 +73,8 @@ Video B vs video C has no real changes, so every change reported there is a fals
 
 Both methods get 4 of 5 objects right on A vs B. The difference is the kind of mistake. The baseline calls the bottle removed, although video B never pointed at it. Ours misses the pencil case move. Video B saw only 41% of its old spot, below the 50% the system needs to decide, so it said "not checked" and had nothing to pair the new pencil case with. On B vs C the baseline reports one false change and ours none.
 
+Across both pairs, every change ours reported really happened. The pencil case did arrive at its new spot, ours just failed to link it to the old one. The baseline reported two changes that didn't happen, the bottle removed in A vs B and the bottle added in B vs C.
+
 ## How it works
 
 1. **Frames.** The 15 sharpest frames from each video, one per equal slice of time.
@@ -81,11 +83,13 @@ Both methods get 4 of 5 objects right on A vs B. The difference is the kind of m
 4. **Visibility test.** Each object's surface, in 1 cm cubes, is projected into every camera of the other video. A cube counts as seen if it lands inside the image and nothing stands in front of it. A seen cube is present if the other video has an object of about the same size there.
 5. **Five states.** Under 50% seen is not checked. Present in at least half of what was seen is unchanged. Anything else is removed or added. A removed and an added object with the same label become moved.
 
-Every threshold was checked on B vs C only. A vs B ran once, after they were frozen.
+Every threshold was checked on B vs C only, then frozen before the final A vs B run. A vs B was still looked at during the build. One rule, about low-confidence depth, came from looking at the notebook in A vs B. The [design note](docs/DESIGN.md) says so.
 
 ## Run it
 
 **GPU part, in Colab (about 6 minutes per pair).** Open [`notebooks/gpu.ipynb`](https://colab.research.google.com/github/golovchits/visibility-aware-change-detection/blob/main/notebooks/gpu.ipynb) with a T4 runtime and run all cells. It downloads `AB.npz` and `BC.npz`. Put both in a `cache/` folder in your clone.
+
+**Or skip Colab.** Download `AB.npz` and `BC.npz` from the [v1.0 release](https://github.com/golovchits/visibility-aware-change-detection/releases/tag/v1.0) into `cache/`. These are the files the notebook makes, and `run.py` rebuilds `results/` from them exactly.
 
 **Everything else, on any laptop with no GPU.**
 

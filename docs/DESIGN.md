@@ -10,7 +10,7 @@
 - *Low-confidence depth counts as seen only if it agrees with the expected distance.* VGGT is least sure on plain white table, which is exactly what a removed object leaves behind. I found this on the A vs B notebook, so it is test data reuse, and I say so. On the control pair it adds no false visibility.
 - *Template sentences.* Rejected an LLM. Every number in a sentence comes from results.json.
 
-**How I measured it.** Ground truth written while filming. A no-change control pair (B vs C). A naive baseline that is the same pipeline without the visibility test, so the test is the only difference. Thresholds were checked on B vs C only, frozen, and then A vs B ran once.
+**How I measured it.** Ground truth written while filming. A no-change control pair (B vs C). A naive baseline that is the same pipeline without the visibility test, so the test is the only difference. Thresholds were checked on B vs C only and frozen before the final A vs B run. The one rule shaped by A vs B is the low-confidence depth rule above.
 
 **What didn't work.** The pencil case move. Video B saw 41% of its old spot, under the 50% cut-off, so the system said "not checked" and lost the move. Accuracy on A vs B ties with the baseline at 4 of 5. What the visibility test buys is the kind of mistake. It never says "removed" without looking, and it raised no false alarms on the control pair, where the baseline raised one.
 
