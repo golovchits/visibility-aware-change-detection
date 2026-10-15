@@ -1,0 +1,225 @@
+{
+  "pair": "AB",
+  "objects": [
+    {
+      "id": 0,
+      "label": "laptop",
+      "video": "B",
+      "state": "same as video 1",
+      "centre_m": [
+        0.196,
+        -0.066,
+        0.877
+      ],
+      "size_cm": [
+        31,
+        21
+      ],
+      "coverage": 1.0,
+      "present_fraction": 0.96,
+      "checked_by_frames": [
+        0,
+        79,
+        110,
+        168,
+        174,
+        249,
+        264,
+        306,
+        346,
+        431,
+        467,
+        516,
+        537,
+        576,
+        642
+      ]
+    },
+    {
+      "id": 1,
+      "label": "laptop",
+      "video": "A",
+      "state": "unchanged",
+      "centre_m": [
+        0.193,
+        -0.092,
+        0.892
+      ],
+      "size_cm": [
+        29,
+        20
+      ],
+      "coverage": 1.0,
+      "present_fraction": 1.0,
+      "checked_by_frames": [
+        0,
+        79,
+        94,
+        128,
+        179,
+        234,
+        270,
+        318,
+        337,
+        383,
+        460,
+        496,
+        541,
+        577,
+        607
+      ]
+    },
+    {
+      "id": 2,
+      "label": "pencil case",
+      "video": "B",
+      "state": "added",
+      "centre_m": [
+        0.364,
+        -0.273,
+        0.993
+      ],
+      "size_cm": [
+        15,
+        15
+      ],
+      "coverage": 0.88,
+      "present_fraction": 0.0,
+      "checked_by_frames": [
+        0,
+        79,
+        110,
+        168,
+        174,
+        249,
+        264,
+        306,
+        346,
+        431,
+        467,
+        516,
+        537,
+        576,
+        642
+      ]
+    },
+    {
+      "id": 3,
+      "label": "pencil case",
+      "video": "A",
+      "state": "not checked",
+      "centre_m": [
+        -0.06,
+        -0.008,
+        0.79
+      ],
+      "size_cm": [
+        15,
+        13
+      ],
+      "coverage": 0.41,
+      "present_fraction": 0.0,
+      "checked_by_frames": [
+        94,
+        128,
+        179,
+        234,
+        270,
+        318,
+        337,
+        383,
+        460,
+        496,
+        541,
+        577,
+        607
+      ]
+    },
+    {
+      "id": 4,
+      "label": "bottle",
+      "video": "A",
+      "state": "not checked",
+      "centre_m": [
+        0.45,
+        -0.571,
+        1.024
+      ],
+      "size_cm": [
+        22,
+        9
+      ],
+      "coverage": 0.0,
+      "present_fraction": 0.0,
+      "checked_by_frames": []
+    },
+    {
+      "id": 5,
+      "label": "notebook",
+      "video": "A",
+      "state": "removed",
+      "centre_m": [
+        0.054,
+        -0.275,
+        1.018
+      ],
+      "size_cm": [
+        21,
+        17
+      ],
+      "coverage": 1.0,
+      "present_fraction": 0.0,
+      "checked_by_frames": [
+        0,
+        79,
+        94,
+        128,
+        179,
+        234,
+        270,
+        318,
+        337,
+        383,
+        460,
+        496,
+        541,
+        577,
+        607
+      ]
+    },
+    {
+      "id": 6,
+      "label": "box",
+      "video": "B",
+      "state": "added",
+      "centre_m": [
+        -0.031,
+        -0.056,
+        0.852
+      ],
+      "size_cm": [
+        10,
+        7
+      ],
+      "coverage": 1.0,
+      "present_fraction": 0.0,
+      "checked_by_frames": [
+        0,
+        79,
+        110,
+        168,
+        174,
+        249,
+        264,
+        306,
+        346,
+        431,
+        467,
+        516,
+        537,
+        576,
+        642
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+# Mac side only. The Colab notebook installs its own packages.
+numpy==2.4.6
+scipy==1.17.1
+opencv-python==5.0.0.93
+pyyaml==6.0.3
+plotly==7.1.0
+pytest==9.1.1
+# Only for the GIF (run.py --gif). kaleido also needs Google Chrome installed.
+kaleido==1.5.0
+imageio==2.38.1

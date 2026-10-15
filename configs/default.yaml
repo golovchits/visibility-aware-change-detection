@@ -13,10 +13,21 @@ text_threshold: 0.25
 # Objects. Starting guesses, tuned on B vs C only at step 6.
 confidence_cutoff: 1.5   # VGGT depth confidence starts at 1.0. About 30% of pixels are above 1.5
 mask_erosion_px: 3       # shrink masks so their edges don't pick up the table
-merge_distance_m: 0.10   # detections of one label closer than this are one object
+merge_radius_m: 0.02     # a detection point this close to an object's points overlaps it
+merge_overlap: 0.5       # share of a detection's points that must overlap to join the object
 min_views: 3             # an object must be seen in at least this many frames
+
+# Visibility test. Starting guesses, tuned on B vs C only at step 6.
+voxel_m: 0.01            # one point per 1 cm cube, so coverage counts surface, not frames
+depth_tolerance: 0.05    # occluded if the camera's depth is more than 5% shorter than the point's
+size_tolerance_m: 0.03   # same object if long and short side both differ by less than this
 
 # Scale. MacBook Air 13-inch (M2, 2022), Apple tech specs.
 scale_object: laptop
 scale_width_m: 0.3041
 scale_depth_m: 0.215     # not used for scale, only as the check
+
+# Final rules. Set from a reason, then checked on B vs C only.
+c_min: 0.5               # checked if at least half of the object's surface was seen
+mostly: 0.5              # present if at least half of the seen surface is present
+r_naive: 0.10            # naive baseline: same-size object within 10 cm counts as a match

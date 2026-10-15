@@ -1,0 +1,223 @@
+{
+  "pair": "BC",
+  "objects": [
+    {
+      "id": 0,
+      "label": "laptop",
+      "video": "B",
+      "state": "unchanged",
+      "centre_m": [
+        -0.224,
+        -0.185,
+        0.656
+      ],
+      "size_cm": [
+        31,
+        21
+      ],
+      "coverage": 1.0,
+      "present_fraction": 0.99,
+      "checked_by_frames": [
+        28,
+        40,
+        112,
+        116,
+        180,
+        208,
+        262,
+        278,
+        337,
+        345,
+        413,
+        437,
+        493,
+        500,
+        560
+      ]
+    },
+    {
+      "id": 1,
+      "label": "pencil case",
+      "video": "B",
+      "state": "unchanged",
+      "centre_m": [
+        0.023,
+        -0.096,
+        0.523
+      ],
+      "size_cm": [
+        16,
+        15
+      ],
+      "coverage": 1.0,
+      "present_fraction": 0.96,
+      "checked_by_frames": [
+        28,
+        40,
+        112,
+        116,
+        180,
+        208,
+        262,
+        278,
+        337,
+        345,
+        413,
+        437,
+        493,
+        500,
+        560
+      ]
+    },
+    {
+      "id": 2,
+      "label": "laptop",
+      "video": "C",
+      "state": "same as video 1",
+      "centre_m": [
+        -0.181,
+        -0.189,
+        0.657
+      ],
+      "size_cm": [
+        29,
+        21
+      ],
+      "coverage": 1.0,
+      "present_fraction": 1.0,
+      "checked_by_frames": [
+        0,
+        79,
+        94,
+        128,
+        179,
+        234,
+        270,
+        318,
+        337,
+        383,
+        460,
+        496,
+        541,
+        577,
+        607
+      ]
+    },
+    {
+      "id": 3,
+      "label": "pencil case",
+      "video": "C",
+      "state": "same as video 1",
+      "centre_m": [
+        0.037,
+        -0.1,
+        0.53
+      ],
+      "size_cm": [
+        16,
+        14
+      ],
+      "coverage": 1.0,
+      "present_fraction": 0.97,
+      "checked_by_frames": [
+        0,
+        79,
+        94,
+        128,
+        179,
+        234,
+        270,
+        318,
+        337,
+        383,
+        460,
+        496,
+        541,
+        577,
+        607
+      ]
+    },
+    {
+      "id": 4,
+      "label": "box",
+      "video": "B",
+      "state": "unchanged",
+      "centre_m": [
+        -0.251,
+        -0.347,
+        0.814
+      ],
+      "size_cm": [
+        10,
+        8
+      ],
+      "coverage": 1.0,
+      "present_fraction": 0.95,
+      "checked_by_frames": [
+        28,
+        40,
+        112,
+        116,
+        180,
+        208,
+        262,
+        278,
+        337,
+        345,
+        413,
+        437,
+        493,
+        500,
+        560
+      ]
+    },
+    {
+      "id": 5,
+      "label": "bottle",
+      "video": "C",
+      "state": "not checked",
+      "centre_m": [
+        0.287,
+        -0.171,
+        0.362
+      ],
+      "size_cm": [
+        23,
+        8
+      ],
+      "coverage": 0.0,
+      "present_fraction": 0.0,
+      "checked_by_frames": []
+    },
+    {
+      "id": 6,
+      "label": "notebook",
+      "video": "C",
+      "state": "same as video 1",
+      "centre_m": [
+        -0.236,
+        -0.353,
+        0.818
+      ],
+      "size_cm": [
+        10,
+        7
+      ],
+      "coverage": 1.0,
+      "present_fraction": 1.0,
+      "checked_by_frames": [
+        179,
+        234,
+        270,
+        318,
+        337,
+        383,
+        460,
+        496,
+        541,
+        577,
+        607
+      ]
+    }
+  ]
+}
