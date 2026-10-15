@@ -6,7 +6,7 @@ Two phone videos of the same table go in. Out comes a 3D map of what was removed
 
 ![The A vs B result, turning once around the table](results/AB/viewer.gif)
 
-To turn it yourself, download [`results/AB/viewer.html`](results/AB/viewer.html) and open it in a browser. It works offline and on a phone.
+**[Open the 3D viewer](https://golovchits.github.io/visibility-aware-change-detection/results/AB/viewer.html)** to turn it yourself. Each object is labelled with its verdict, and hovering shows its sentence. The [control pair](https://golovchits.github.io/visibility-aware-change-detection/results/BC/viewer.html) has its own viewer. Both pages are about 8 MB and work on a phone.
 
 ## Why "not checked" matters
 

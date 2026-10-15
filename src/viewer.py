@@ -2,13 +2,17 @@
 
 viewer.html is one self-contained file that opens on a phone. The GIF turns the same view once around the table.
 """
+import textwrap
+
 import numpy as np
 import plotly.graph_objects as go
 
+from describe import sentence
 from objects import unproject
 
 COLOURS = {"unchanged": "#8c8c8c", "removed": "#d62728", "added": "#2ca02c", "moved": "#ff7f0e",
            "moved to": "#ff7f0e", "not checked": "#9467bd"}
+TAGS = {"moved": "moved from here", "moved to": "moved here"}  # other states are shown as they are
 STEP = 6  # keep every 6th pixel of each frame for the table
 MARGIN_M = 0.15  # table shown up to 15 cm around the objects. Farther depth is mostly noise
 
@@ -44,8 +48,11 @@ def figure(records, cache, scale, pair, config):
             continue  # drawn once, as its video 1 object
         shown = r["points"][:: max(1, len(r["points"]) // 2000)]
         name = f"{r['label']} ({pair[r['video'] - 1]}): {r['state']}"
+        # Hovering shows the object's sentence. A "moved to" object has none, so it shows its partner's.
+        partner = next((o for o in records if o.get("moved_to") == r["id"]), r)
+        hover = "<br>".join(textwrap.wrap(sentence(partner, records, pair, config), 60)) + "<extra></extra>"
         fig.add_trace(go.Scatter3d(x=shown[:, 0], y=shown[:, 1], z=shown[:, 2], mode="markers", name=name,
-                                   marker=dict(size=2, color=COLOURS[r["state"]])))
+                                   marker=dict(size=2, color=COLOURS[r["state"]]), hovertemplate=hover))
         if r["state"] == "moved":
             line = np.array([r["centre"], records[r["moved_to"]]["centre"]])
             fig.add_trace(go.Scatter3d(x=line[:, 0], y=line[:, 1], z=line[:, 2], mode="lines", showlegend=False,
@@ -56,11 +63,12 @@ def figure(records, cache, scale, pair, config):
     cameras = np.array([-e[:, :3].T @ e[:, 3] for e in cache["extrinsic"]]) * scale
     if (cameras - points.mean(axis=0)).mean(axis=0) @ normal < 0:
         normal = -normal
-    # Name tags 3 cm above each object, so the GIF reads without the legend.
+    # Tags 3 cm above each object with its verdict, so the view reads without the legend.
     tagged = [r for r in records if r["state"] != "same as video 1"]
     tags = np.array([r["centre"] + 0.03 * normal for r in tagged])
     fig.add_trace(go.Scatter3d(x=tags[:, 0], y=tags[:, 1], z=tags[:, 2], mode="text", showlegend=False,
-                               text=[r["label"] for r in tagged], textfont=dict(size=13)))
+                               text=[f"{r['label']}: {TAGS.get(r['state'], r['state'])}" for r in tagged],
+                               textfont=dict(size=13), hoverinfo="skip"))
     hidden = dict(visible=False)
     fig.update_layout(scene=dict(aspectmode="data", xaxis=hidden, yaxis=hidden, zaxis=hidden,
                                  camera=view(normal, along, 0)),
