@@ -9,6 +9,7 @@ import os
 import numpy as np
 import yaml
 
+from detect import detect
 from frames import pick_frames, read_frames
 from reconstruct import reconstruct
 
@@ -31,7 +32,10 @@ cache = reconstruct(frames)
 cache["video"] = np.array(video_tags)          # 1 or 2, per frame
 cache["frame_number"] = np.array(frame_numbers)  # position in the original video
 
+# Detection runs on the exact images VGGT saw, so mask pixels line up with depth pixels.
+cache.update(detect(cache["image"], config["prompts"], config["box_threshold"], config["text_threshold"]))
+
 os.makedirs("cache", exist_ok=True)
 out_path = f"cache/{args.pair}.npz"
 np.savez_compressed(out_path, **cache)
-print(f"{args.pair}: {len(frames)} frames, image size {cache['image'].shape[1:3]} -> {out_path}")
+print(f"{args.pair}: {len(frames)} frames, {len(cache['mask'])} masks, image size {cache['image'].shape[1:3]} -> {out_path}")

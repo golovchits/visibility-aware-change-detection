@@ -140,7 +140,7 @@ Why masks and not depth for this step. A notebook lies about 1 cm above the tabl
 | Video 2 | covered in video 1, mostly present there | Same object as its video 1 match. Reported once, under the video 1 object |
 | A removed + an added object | same label | Moved, with the distance in cm |
 
-Thresholds: depth confidence cut-off, depth tolerance, `c_min`, the "mostly" cut-off, and the baseline radius `r_naive`. All set on B vs C only, then frozen.
+Thresholds: depth confidence cut-off, mask erosion, merge distance, minimum views, depth tolerance, `c_min`, the "mostly" cut-off, and the baseline radius `r_naive`. All set on B vs C only, then frozen.
 
 **Naive baseline.** The same pipeline without section 07 and without the "not checked" state. A video 1 object with no same-label object within `r_naive` in video 2 is removed, and the reverse is added. A removed and an added object of the same label become "moved", the same rule as ours. `r_naive` is tuned on B vs C the same way as our thresholds, then frozen. It isolates what the visibility test adds.
 

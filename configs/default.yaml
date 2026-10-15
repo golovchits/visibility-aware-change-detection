@@ -4,3 +4,19 @@ videos:
   C: control.MOV
 
 frames_per_video: 15
+
+# Grounding DINO. A general desk list, not only the objects in our scene.
+prompts: [laptop, notebook, book, pencil case, bag, bottle, cup, phone, keyboard, mouse, paper, cards, box, pen, headphones]
+box_threshold: 0.35    # Grounding DINO's own defaults
+text_threshold: 0.25
+
+# Objects. Starting guesses, tuned on B vs C only at step 6.
+confidence_cutoff: 1.5   # VGGT depth confidence starts at 1.0. About 30% of pixels are above 1.5
+mask_erosion_px: 3       # shrink masks so their edges don't pick up the table
+merge_distance_m: 0.10   # detections of one label closer than this are one object
+min_views: 3             # an object must be seen in at least this many frames
+
+# Scale. MacBook Air 13-inch (M2, 2022), Apple tech specs.
+scale_object: laptop
+scale_width_m: 0.3041
+scale_depth_m: 0.215     # not used for scale, only as the check
